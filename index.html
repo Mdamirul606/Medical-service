@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নিরাময় - আপনার স্বাস্থ্য, আপনার ভাষায়</title>
+    <!-- Google Fonts for Bengali and English -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    
+    <style>
+        /* =================================
+           1. General and Global Styles
+        ==================================== */
+        :root {
+            --primary-blue: #3B82F6;
+            --background-white: #F9FAFB;
+            --accent-warm: #F59E0B;
+            --text-dark: #1F2937;
+            --text-light: #6B7281;
+            --calm-green: #10B981;
+            --emergency-red: #EF4444;
+        }
+
+        body {
+            font-family: 'Noto Sans Bengali', 'Inter', sans-serif;
+            background-color: var(--background-white);
+            color: var(--text-dark);
+            margin: 0;
+            padding-top: 135px; 
+        }
+
+        /* Helper class to hide sections */
+        .hidden {
+            display: none;
+        }
+
+        /* =================================
+           Logo Container Styles
+        ==================================== */
+        .logo-container {
+            background-color: white;
+            text-align: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e5e7eb;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1001;
+            box-sizing: border-box;
+        }
+
+        .logo-container .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            text-decoration: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        /* =================================
+           Redesigned Navigation Bar
+        ==================================== */
+        .main-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            /* === COLOR CHANGE START === */
+            background-color: var(--primary-blue); /* Changed from white to blue */
+            /* === COLOR CHANGE END === */
+            border-bottom: 1px solid #e5e7eb;
+            position: fixed;
+            width: 100%;
+            top: 65px; 
+            left: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .home-button {
+            font-size: 1.3rem;
+            padding: 8px !important;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            /* === COLOR CHANGE START === */
+            color: white; /* Changed from text-dark to white */
+            /* === COLOR CHANGE END === */
+            font-weight: 500;
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-links a i {
+            margin-right: 8px;
+        }
+
+        /* === COLOR CHANGE START === */
+        /* New hover/active state for blue background */
+        .nav-links a:hover, .nav-links a.active,
+        .home-button:hover, .home-button.active {
+            background-color: #2563EB; /* A slightly lighter, more vibrant blue */
+            color: white;
+        }
+        /* === COLOR CHANGE END === */
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            /* === COLOR CHANGE START === */
+            color: white; /* Changed from text-dark to white */
+            /* === COLOR CHANGE END === */
+        }
+
+        /* Responsive Styles for Navigation */
+        @media (max-width: 768px) {
+            .nav-left {
+                gap: 1rem;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                /* === COLOR CHANGE START === */
+                background-color: var(--primary-blue); /* Matched nav background */
+                /* === COLOR CHANGE END === */
+                flex-direction: column;
+                align-items: center;
+                border-bottom: 1px solid #2563EB;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-out;
+            }
+
+            .nav-links.active {
+                max-height: 500px; 
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                width: calc(100% - 40px);
+                margin: 0 auto;
+                justify-content: center;
+            }
+
+            .hamburger {
+                display: block;
+            }
+        }
+        
+        /* =================================
+           AI Chat Consultation Screen Styles
+        ==================================== */
+        .chat-page { display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 135px); background: linear-gradient(45deg, #e0f7fa, #e8eaf6); background-size: 200% 200%; animation: calm-background 15s ease infinite; box-sizing: border-box; }
+        @keyframes calm-background { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .chat-container { width: 95%; max-width: 700px; height: 80vh; max-height: 700px; background: white; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
+        .chat-header { padding: 1rem; border-bottom: 1px solid #eee; text-align: center; position: relative; }
+        .language-toggle-chat { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); cursor: pointer; font-size: 0.9rem; }
+        .chat-box { flex-grow: 1; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; }
+        .chat-bubble { padding: 0.8rem 1.2rem; border-radius: 18px; margin-bottom: 1rem; max-width: 80%; display: flex; align-items: center; line-height: 1.5; }
+        .chat-bubble.ai { background-color: #ECEFF1; align-self: flex-start; }
+        .chat-bubble.user { background-color: var(--primary-blue); color: white; align-self: flex-end; }
+        .chat-bubble .icon { margin-right: 0.7rem; color: var(--primary-blue); }
+        .chat-input { display: flex; padding: 1rem; border-top: 1px solid #eee; gap: 0.5rem; }
+        .chat-input input { flex-grow: 1; border: none; background: #f0f0f0; padding: 0.8rem; border-radius: 20px; outline: none; }
+        .chat-input button { border: none; background: transparent; font-size: 1.5rem; cursor: pointer; color: var(--primary-blue); padding: 0 0.5rem; }
+        .typing-indicator { display: flex; align-items: center; }
+        .typing-indicator span { height: 8px; width: 8px; background-color: #90A4AE; border-radius: 50%; display: inline-block; margin: 0 2px; animation: pulse 1.4s infinite; }
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes pulse { 0%, 100% { opacity: 0.3; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1); } }
+
+        /* =================================
+           Patient Dashboard Styles
+        ==================================== */
+        .dashboard-page { padding: 2rem; max-width: 1200px; margin: auto; }
+        .dashboard-header { margin-bottom: 2rem; text-align: center; }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .card { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.07); transition: transform 0.3s ease; }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { margin-top: 0; display: flex; align-items: center; font-size: 1.2rem; }
+        .card h3 i { margin-right: 0.8rem; color: var(--primary-blue); }
+        .card ul { padding-left: 1.2rem; color: var(--text-light); }
+        .card-upload .btn-upload { background-color: var(--primary-blue); color: white; padding: 0.7rem 1.2rem; border-radius: 8px; border: none; cursor: pointer; width: 100%; margin-top: 1rem; }
+        .card-ai-insights { background-color: #FFFBEB; border-left: 4px solid var(--accent-warm); }
+        .card-ai-insights h3 i { color: var(--accent-warm); }
+        .mood-meter .mood-icons { display: flex; justify-content: space-around; font-size: 2rem; cursor: pointer; padding-top: 1rem; }
+        .mood-meter .mood-icons span { transition: transform 0.2s; }
+        .mood-meter .mood-icons span:hover { transform: scale(1.2); }
+
+        /* =================================
+           Doctor Booking Screen Styles
+        ==================================== */
+        .booking-page { padding: 2rem; max-width: 900px; margin: auto; }
+        .booking-page h2 { text-align: center; margin-bottom: 1.5rem; }
+        .filters { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+        .filters select { padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd; flex-grow: 1; background-color: white; }
+        .doctor-card { display: flex; align-items: center; background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.07); margin-bottom: 1.5rem; gap: 1.5rem; flex-wrap: wrap; }
+        .doctor-card img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; }
+        .doctor-info { flex-grow: 1; }
+        .doctor-info h4, .doctor-info p { margin: 0.2rem 0; }
+        .rating { color: var(--accent-warm); font-size: 0.9rem; }
+        .tags { margin-top: 0.5rem; }
+        .tag { background-color: #eee; padding: 0.3rem 0.6rem; border-radius: 12px; font-size: 0.8rem; display: inline-block; margin-right: 0.5rem; }
+        .btn-book { background-color: var(--calm-green); color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; margin-left: auto; }
+
+        /* =================================
+           Emergency Screen Styles
+        ==================================== */
+        .emergency-page { background-color: #FFF5F5; display: flex; justify-content: center; align-items: center; min-height: calc(100vh - 135px); text-align: center; padding: 1rem; }
+        .emergency-container { max-width: 500px; width: 100%; }
+        .sos-button { width: 180px; height: 180px; background-color: var(--emergency-red); color: white; border: none; border-radius: 50%; font-size: 2.5rem; cursor: pointer; display: flex; flex-direction: column; justify-content: center; align-items: center; animation: pulse-sos 2s infinite; box-shadow: 0 0 0 0 rgba(239, 68, 68, 1); margin: 0 auto; }
+        @keyframes pulse-sos { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 30px rgba(239, 68, 68, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); } }
+        .emergency-container p { font-size: 1.2rem; color: #B91C1C; margin-top: 2rem; font-weight: bold; }
+        .quick-calls { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; }
+        .call-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: var(--text-dark); font-weight: bold; padding: 1rem; background: white; border-radius: 12px; width: 100px; height: 100px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .call-btn i { font-size: 2rem; margin-bottom: 0.5rem; color: var(--emergency-red); }
+    </style>
+</head>
+<body>
+
+    <!-- Logo Container -->
+    <div class="logo-container">
+        <div class="logo" data-target="chat">নিরাময়</div>
+    </div>
+
+    <!-- Redesigned Main Navigation (Now Blue) -->
+    <header class="main-navigation">
+        <div class="nav-left">
+            <a href="#" data-target="chat" class="nav-link home-button active" title="হোম">
+                <i class="fas fa-home"></i>
+            </a>
+        </div>
+        
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" data-target="dashboard" class="nav-link"><i class="fas fa-th-large"></i> ড্যাশবোর্ড</a></li>
+                <li><a href="#" data-target="booking" class="nav-link"><i class="fas fa-calendar-alt"></i> ডাক্তার বুকিং</a></li>
+                <li><a href="#" data-target="emergency" class="nav-link"><i class="fas fa-first-aid"></i> জরুরী</a></li>
+            </ul>
+        </nav>
+
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <main>
+        <!-- ======================= 
+             AI Chat Section (Homepage)
+             ======================= -->
+        <section id="chat" class="page-section">
+            <div class="chat-page">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h3>AI স্বাস্থ্য পরামর্শ</h3>
+                        <div class="language-toggle-chat">বাংলা / English</div>
+                    </div>
+                    <div class="chat-box">
+                        <div class="chat-bubble ai">
+                            <i class="fas fa-hand-holding-medical icon"></i>
+                            <span>নমস্কার! আমি নিরাময়, আপনার ডিজিটাল স্বাস্থ্য সহকারী। আপনার কী অসুবিধা হচ্ছে, অনুগ্রহ করে বলুন।</span>
+                        </div>
+                        <div class="chat-bubble user">
+                            <span>আমার গত ২ দিন ধরে অনেক জ্বর এবং তীব্র মাথা ব্যথা।</span>
+                        </div>
+                         <div class="chat-bubble ai">
+                            <div class="typing-indicator">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" placeholder="আপনার উপসর্গ এখানে লিখুন...">
+                        <button class="voice-btn" title="ভয়েস ইনপুট"><i class="fas fa-microphone"></i></button>
+                        <button class="send-btn" title="পাঠান"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= 
+             Patient Dashboard Section
+             ======================= -->
+        <section id="dashboard" class="page-section hidden">
+            <div class="dashboard-page">
+                <div class="dashboard-header">
+                    <h2>স্বাগতম, [রোগীর নাম]</h2>
+                    <p>আপনার স্বাস্থ্যের একটি সংক্ষিপ্ত বিবরণ নিচে দেওয়া হলো।</p>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="card">
+                        <h3><i class="fas fa-notes-medical"></i> সাম্প্রতিক উপসর্গ</h3>
+                        <ul>
+                            <li>জ্বর (১০১° ফাঃ)</li>
+                            <li>তীব্র মাথা ব্যথা</li>
+                            <li>শরীর ব্যথা</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-prescription-bottle-alt"></i> বর্তমান প্রেসক্রিপশন</h3>
+                        <p>Napa Extra (65mg) - দিনে ২ বার, খাওয়ার পর।</p>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-calendar-check"></i> পরবর্তী অ্যাপয়েন্টমেন্ট</h3>
+                        <p>ডাঃ আনিকা আহমেদ - আগামীকাল, বিকাল ৪:০০</p>
+                    </div>
+                    <div class="card card-upload">
+                        <h3><i class="fas fa-file-upload"></i> মেডিকেল রিপোর্ট আপলোড</h3>
+                        <p>আপনার প্রেসক্রিপশন বা টেস্ট রিপোর্ট এখানে আপলোড করুন।</p>
+                        <button class="btn-upload">ফাইল বাছাই করুন (PDF, JPG)</button>
+                    </div>
+                    <div class="card card-ai-insights">
+                         <h3><i class="fas fa-lightbulb"></i> AI পরামর্শ</h3>
+                         <p>আপনার উপসর্গ অনুযায়ী, পর্যাপ্ত বিশ্রাম এবং প্রচুর পরিমাণে জল পান করা অত্যন্ত জরুরি। জ্বর না কমলে ডাক্তারের সাথে যোগাযোগ করুন।</p>
+                    </div>
+                    <div class="card mood-meter">
+                        <h3><i class="fas fa-smile-beam"></i> আজকের মুড মিটার</h3>
+                        <p>আপনি আজ কেমন অনুভব করছেন?</p>
+                        <div class="mood-icons">
+                            <span>😊</span><span>🙂</span><span>😐</span><span>😕</span><span>😞</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ======================= 
+             Doctor Booking Section
+             ======================= -->
+        <section id="booking" class="page-section hidden">
+            <div class="booking-page">
+                <h2>আপনার পছন্দের ডাক্তার খুঁজুন</h2>
+                <div class="filters">
+                    <select><option selected>বিশেষত্ব বাছাই করুন</option><option>মেডিসিন</option><option>কার্ডিওলজি</option></select>
+                    <select><option selected>ভাষা বাছাই করুন</option><option>বাংলা</option><option>English</option></select>
+                    <select><option selected>উপস্থিতি</option><option>আজ</option><option>আগামীকাল</option></select>
+                </div>
+                <div class="doctor-list">
+                    <div class="doctor-card">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?q=80&w=2070&auto=format&fit=crop" alt="Doctor Photo">
+                        <div class="doctor-info">
+                            <h4>ডাঃ আনিকা আহমেদ</h4>
+                            <p>মেডিসিন বিশেষজ্ঞ</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.8 (120 reviews)
+                            </div>
+                            <div class="tags">
+                                <span class="tag">বাংলা</span>
+                                <span class="tag">English</span>
+                            </div>
+                        </div>
+                        <button class="btn-book">অ্যাপয়েন্টমেন্ট বুক করুন</button>
+                    </div>
+                     <div class="doctor-card">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop" alt="Doctor Photo">
+                        <div class="doctor-info">
+                            <h4>ডাঃ রহমান চৌধুরী</h4>
+                            <p>হৃদরোগ বিশেষজ্ঞ (কার্ডিওলজিস্ট)</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.9 (250 reviews)
+                            </div>
+                            <div class="tags">
+                                <span class="tag">বাংলা</span>
+                            </div>
+                        </div>
+                        <button class="btn-book">অ্যাপয়েন্টমেন্ট বুক করুন</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ======================= 
+             Emergency Section
+             ======================= -->
+        <section id="emergency" class="page-section hidden">
+            <div class="emergency-page">
+                <div class="emergency-container">
+                    <button class="sos-button" onclick="alert('জরুরী সতর্কতা পাঠানো হচ্ছে!')">
+                        <i class="fas fa-bell"></i>
+                        <span>SOS</span>
+                    </button>
+                    <p>জরুরী সাহায্যের জন্য বাটনটি চেপে ধরুন। আপনার অবস্থান নিকটস্থ পরিষেবা কেন্দ্রে পাঠানো হবে।</p>
+                    <div class="quick-calls">
+                        <a href="tel:999" class="call-btn">
+                            <i class="fas fa-ambulance"></i>
+                            <span>অ্যাম্বুলেন্স</span>
+                        </a>
+                        <a href="tel:16263" class="call-btn">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>স্বাস্থ্য হটলাইন</span>
+                        </a>
+                        <a href="tel:FAMILY_NUMBER" class="call-btn">
+                            <i class="fas fa-user-friends"></i>
+                            <span>পরিবার</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link, .logo');
+            const pageSections = document.querySelectorAll('.page-section');
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-links');
+            const navLinkItems = document.querySelectorAll('.nav-links a, .home-button'); 
+
+            function showPage(targetId) {
+                pageSections.forEach(section => {
+                    section.classList.add('hidden');
+                });
+
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                }
+
+                // Note: The home button also has the '.nav-link' class in the HTML now,
+                // so this logic can be simplified, but the current logic still works perfectly.
+                navLinkItems.forEach(nav => {
+                    nav.classList.remove('active');
+                    // Check both the nav link itself and its parent li if it exists
+                    if(nav.getAttribute('data-target') === targetId) {
+                        nav.classList.add('active');
+                    }
+                });
+                
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    hamburger.innerHTML = `<i class="fas fa-bars"></i>`;
+                }
+                window.scrollTo(0, 0);
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    showPage(targetId);
+                });
+            });
+
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                if (navMenu.classList.contains('active')) {
+                    hamburger.innerHTML = `<i class="fas fa-times"></i>`;
+                } else {
+                    hamburger.innerHTML = `<i class="fas fa-bars"></i>`;
+                }
+            });
+            showPage('chat');
+        });
+    </script>
+</body>
+</html>
